@@ -3,6 +3,11 @@
 const formTemplate = document.querySelector(".ba-content-form");
 const submitForm = document.querySelector(".ba-content-submit");
 const appendContainer = document.querySelector(".ba-admin-tasks");
+const completedTasksBtn = document.querySelector(".completed-tasks-btn");
+const completedTasksContainer = document.querySelector(
+  ".completed-tasks-container"
+);
+const xTaskIcon = document.querySelector(".x-task-icon");
 
 // This function deletes related item
 function removeFromField(event) {
@@ -11,6 +16,13 @@ function removeFromField(event) {
   removeBtnGrandParent = removeBtnParent.parentElement;
 
   removeBtnGrandParent.remove();
+}
+
+// This function deletes related item
+function displayContent(event) {
+  displayBtn = event.target;
+  displayBtnParent = displayBtn.parentElement;
+  displayBtnGrandParent = displayBtnParent.parentElement;
 }
 
 // This function edits related field
@@ -38,6 +50,11 @@ function completedTasks(e) {
   } else {
     tickBtn.style.color = `var(--color-primary)`;
   }
+
+  const makeTaskRow = document.createElement("div");
+  makeTaskRow.classList.add("completed-task");
+  makeTaskRow.innerHTML = `<p class="para-text">${tickBtnGrandParent.children[0].innerText}</p>`;
+  completedTasksContainer.appendChild(makeTaskRow);
 }
 
 // SECTOR DOM's
@@ -86,4 +103,14 @@ formTemplate.addEventListener("submit", function (e) {
   for (let i = 0; i < finishedTasks.length; i++) {
     finishedTasks[i].addEventListener("click", completedTasks);
   }
+});
+
+completedTasksBtn.addEventListener("click", function () {
+  completedTasksContainer.style.opacity = 1;
+  completedTasksContainer.style.visibility = "visible";
+});
+
+xTaskIcon.addEventListener("click", function () {
+  completedTasksContainer.style.opacity = 0;
+  completedTasksContainer.style.visibility = "hidden";
 });

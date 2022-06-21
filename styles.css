@@ -93,6 +93,8 @@ body {
   border-radius: 4px;
 
   background-color: var(--color-white);
+
+  position: relative;
 }
 
 .ba-heading {
@@ -111,6 +113,8 @@ body {
   height: 90%;
 
   padding: 1rem;
+
+  position: relative;
 }
 
 .ba-content-form {
@@ -203,13 +207,12 @@ body {
 
 /* --- */
 
-
 .ba-admin-tasks {
   width: 100%;
   height: 80%;
- 
+
   margin-top: 1rem;
-  padding: .2rem;
+  padding: 0.2rem;
   border: 1px solid var(--color-secondary--light-1);
 
   border-radius: 2px;
@@ -234,8 +237,6 @@ body {
   background-color: whitesmoke;
   box-shadow: var(--shadow-1);
   border: 1px solid var(--color-secondary--light-2);
-
-  
 }
 
 .admin-task p {
@@ -246,47 +247,46 @@ body {
   overflow: hidden;
   white-space: nowrap;
 
-  padding: .5rem .3rem;
+  padding: 0.5rem 0.3rem;
 }
 
-.task-controller{
+.task-controller {
   display: flex;
   align-items: center;
-  gap:1rem;
+  gap: 1rem;
 
   padding-left: 1rem;
 
   border-left: 1px solid var(--color-secondary--dark-1);
 }
 
-.icon{
+.icon {
   font-size: 2rem;
-  transition: all .14s linear;
+  transition: all 0.14s linear;
   cursor: pointer;
 }
 
-.delete-task-icon:hover{
-  
+.delete-task-icon:hover {
   color: var(--color-danger);
 }
 
-.edit-task-icon:hover{
+.edit-task-icon:hover {
   color: var(--color-safe);
 }
 
-.done-task-icon:hover{
+.done-task-icon:hover {
   color: var(--color-secondary--light-2);
 }
 
-.open-task-icon:hover{
-  color:coral;
+.open-task-icon:hover {
+  color: coral;
 }
 
-.finished-task{
+.finished-task {
   position: relative;
 }
 
-.finished-task::after{
+.finished-task::after {
   content: "";
   width: 100%;
   height: 4px;
@@ -299,4 +299,113 @@ body {
   left: 0;
 
   z-index: 1;
+}
+
+/*  */
+
+.completed-tasks-container {
+  width: 90%;
+  height: 90%;
+
+  background-color: var(--color-text--light-1);
+
+  border-radius: 4px;
+  box-shadow: var(--shadow-1);
+
+  padding: 4rem 1rem;
+  margin-top: 13rem;
+  margin-left: 13rem;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  opacity: 0;
+  visibility: visible;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.completed-task {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border-radius: 5px;
+  box-shadow: var(--shadow-1);
+
+  background-color: var(--color-secondary--light-1);
+}
+
+.x-task-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  z-index: 3;
+
+  color: var(--color-secondary--light-2);
+
+  transition: all 0.2s linear;
+}
+
+.x-task-icon:hover {
+  color: var(--color-white);
+}
+
+.deleted-all-tasks-btn{
+  position: absolute;
+  top: 1rem;
+  z-index: 3;
+
+  padding: .3rem .6rem;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+
+  font-size: 1.4rem;
+  text-transform: uppercase;
+
+  color: var(--color-white);
+  background-color: var(--color-danger);
+
+  transition: all 0.2s linear;
+  left: 1rem;
+
+  cursor: pointer;
+}
+
+.completed-tasks-btn {
+  display: inline-block;
+  width: 16rem;
+  height: 4rem;
+
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 600;
+
+  border: none;
+  border-radius: 2px;
+
+  padding: 0.3rem;
+
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+
+  cursor: pointer;
+
+  transition: all 0.2s linear;
+
+  position: absolute;
+  bottom: 0.5rem;
+  left: 1.5rem;
+}
+
+.completed-tasks-btn:hover {
+  background-color: var(--color-secondary--light-2);
 }
