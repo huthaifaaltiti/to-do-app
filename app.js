@@ -108,9 +108,11 @@ formTemplate.addEventListener("submit", function (e) {
 completedTasksBtn.addEventListener("click", function () {
   completedTasksContainer.style.opacity = 1;
   completedTasksContainer.style.visibility = "visible";
+  completedTasksContainer.style.display = "flex";
 });
 
 xTaskIcon.addEventListener("click", function () {
   completedTasksContainer.style.opacity = 0;
   completedTasksContainer.style.visibility = "hidden";
+  completedTasksContainer.style.display = "none";
 });
