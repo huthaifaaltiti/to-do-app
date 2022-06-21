@@ -7,6 +7,11 @@
 
     <!-- CSS Sheets -->
     <link rel="stylesheet" href="/styles.css" />
+    <!-- For Fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
     <title>To Do App</title>
   </head>
   <body>
@@ -22,16 +27,34 @@
               >Need to plan something?
             </label>
             <br />
-            <input
-              type="text"
-              id="fname"
-              class="ba-content-input"
-              name="fname"
-            />
-            <input type="submit" class="ba-content-submit" value="Submit" />
+
+            <div class="form-group">
+              <input
+                type="text"
+                id="fname"
+                class="ba-content-input"
+                name="fname"
+                placeholder="Set a task.."
+              />
+
+              <button class="ba-content-submit" value="submit">Save</button>
+            </div>
           </form>
+
+          <div class="ba-admin-tasks">
+            <!-- <div class="admin-task admin-task--1">
+              <p class="para-text admin-para finished-task">The first is to study JS</p>
+              <div class="task-controller">
+                <i class="fa-solid fa-eraser icon delete-task-icon"></i>
+                <i class="fa-solid fa-pen icon edit-task-icon"></i>
+                <i class="fa-solid fa-circle-check icon done-task-icon"></i>
+              </div>
+            </div> -->
+          </div>
         </div>
       </div>
     </div>
+
+    <script src="app.js"></script>
   </body>
 </html>
