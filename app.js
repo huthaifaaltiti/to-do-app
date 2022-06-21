@@ -55,9 +55,19 @@ formTemplate.addEventListener("submit", function (e) {
       <i class="fa-solid fa-eraser icon delete-task-icon"></i>
       <i class="fa-solid fa-pen icon edit-task-icon"></i>
       <i class="fa-solid fa-circle-check icon done-task-icon"></i>
+      <i class="fa-solid fa-lock icon open-task-icon"></i>
     </div>
   `;
-  appendContainer.appendChild(makeTaskRow);
+
+  // Check is there is a task written
+  if (inputTask === "") {
+    alert("Add a task!");
+    appendContainer.removeChild(makeTaskRow);
+  } else {
+    appendContainer.appendChild(makeTaskRow);
+    // delete text field for the next task
+    taskFiled.children[2].children[0].value = "";
+  }
 
   // eraser
   const fieldEraser = document.querySelectorAll(".delete-task-icon");
