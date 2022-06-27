@@ -27,14 +27,19 @@ function displayContent(event) {
 
 // This function edits related field
 function editField(event) {
+  let preEditedTask = this.parentElement.parentElement.children[0].innerText;
+
   editBtn = event.target;
   editBtnParent = editBtn.parentElement;
   editBtnGrandParent = editBtnParent.parentElement;
 
-  const newTask = prompt(
+  let newTask = prompt(
     "Edit a task?",
     `${editBtnGrandParent.children[0].innerText}`
   );
+
+  if (newTask === null) newTask = preEditedTask;
+
   editBtnGrandParent.children[0].innerText = newTask;
 }
 
@@ -86,19 +91,19 @@ formTemplate.addEventListener("submit", function (e) {
     taskFiled.children[2].children[0].value = "";
   }
 
-  // eraser
+  // erase the desired field
   const fieldEraser = document.querySelectorAll(".delete-task-icon");
   for (let i = 0; i < fieldEraser.length; i++) {
     fieldEraser[i].addEventListener("click", removeFromField);
   }
 
-  // editor
+  // edit the desired field
   const fieldEditor = document.querySelectorAll(".edit-task-icon");
   for (let i = 0; i < fieldEditor.length; i++) {
     fieldEditor[i].addEventListener("click", editField);
   }
 
-  // done
+  // done with the task
   const finishedTasks = document.querySelectorAll(".done-task-icon");
   for (let i = 0; i < finishedTasks.length; i++) {
     finishedTasks[i].addEventListener("click", completedTasks);
