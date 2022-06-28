@@ -7,6 +7,14 @@ const completedTasksBtn = document.querySelector(".completed-tasks-btn");
 const completedTasksContainer = document.querySelector(
   ".completed-tasks-container"
 );
+
+const fullTaskPreview = document.querySelector(".full-task-view-container");
+const fullTaskPreviewOk = document.querySelector(".ok button");
+
+const deletedAllTasksFinishedBtn = document.querySelector(
+  ".deleted-all-tasks-btn"
+);
+
 const xTaskIcon = document.querySelector(".x-task-icon");
 
 // This function deletes related item
@@ -16,13 +24,6 @@ function removeFromField(event) {
   removeBtnGrandParent = removeBtnParent.parentElement;
 
   removeBtnGrandParent.remove();
-}
-
-// This function deletes related item
-function displayContent(event) {
-  displayBtn = event.target;
-  displayBtnParent = displayBtn.parentElement;
-  displayBtnGrandParent = displayBtnParent.parentElement;
 }
 
 // This function edits related field
@@ -53,7 +54,7 @@ function completedTasks(e) {
   if (tickBtnGrandParent.children[0].classList.contains("finished-task")) {
     tickBtn.style.color = `var(--color-secondary--light-2)`;
   } else {
-    tickBtn.style.color = `var(--color-primary)`;
+    tickBtn.style.color = `#333333`;
   }
 
   const makeTaskRow = document.createElement("div");
@@ -108,16 +109,63 @@ formTemplate.addEventListener("submit", function (e) {
   for (let i = 0; i < finishedTasks.length; i++) {
     finishedTasks[i].addEventListener("click", completedTasks);
   }
+
+  // unlock  the task
+  const openTaskIcon = document.querySelectorAll(".open-task-icon");
+  for (let i = 0; i < openTaskIcon.length; i++) {
+    openTaskIcon[i].addEventListener("click", function (event) {
+      unlockMessage = event.target;
+      unlockMessage.classList.toggle("display-none");
+
+      if (unlockMessage.classList.contains("display-none")) {
+        const makeEle = document.createElement("i");
+        makeEle.classList.add("fa-solid");
+        makeEle.classList.add("icon");
+        makeEle.classList.add("fa-lock-open");
+        unlockMessage.parentElement.appendChild(makeEle);
+
+        makeEle.addEventListener("click", function (event) {
+          lockMessage = event.target;
+          lockMessage.remove();
+          unlockMessage.classList.toggle("display-none");
+
+          fullTaskPreview.style.display = "none";
+        });
+
+        fullTaskPreview.style.display = "block";
+        fullTaskPreview.children[0].remove();
+        const makeTaskRow = document.createElement("p");
+        makeTaskRow.innerHTML = `<p>${unlockMessage.parentElement.parentElement.children[0].innerText}</p>`;
+        fullTaskPreview.appendChild(makeTaskRow);
+
+        // fullTaskPreviewOk.addEventListener("click", function () {
+        //   fullTaskPreview.style.display = "none";
+        //   unlockMessage.classList.toggle("display-none");
+        // });
+      }
+    });
+  }
 });
 
+// open completed tasks container
 completedTasksBtn.addEventListener("click", function () {
   completedTasksContainer.style.opacity = 1;
   completedTasksContainer.style.visibility = "visible";
   completedTasksContainer.style.display = "flex";
 });
 
+// close completed tasks container
 xTaskIcon.addEventListener("click", function () {
   completedTasksContainer.style.opacity = 0;
   completedTasksContainer.style.visibility = "hidden";
   completedTasksContainer.style.display = "none";
+});
+
+// delete all finished tasks in the completed tasks container
+deletedAllTasksFinishedBtn.addEventListener("click", function () {
+  const completedTasks = document.querySelectorAll(".completed-task");
+
+  for (let i = 0; i < completedTasks.length; i++) {
+    completedTasks[i].remove();
+  }
 });
